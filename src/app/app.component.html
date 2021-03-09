@@ -1,0 +1,110 @@
+<!-- Vertical navbar -->
+<div class="vertical-nav bg-white" id="sidebar"  [hidden]="esconderBarra()">
+  <div class="py-4 px-3 mb-4 bg-light">
+    <div class="media d-flex align-items-center">
+      <img loading="lazy" src="../assets/user2.png" alt="..." width="80" height="80"
+        class="mr-3 rounded-circle img-thumbnail shadow-sm">
+      <div class="media-body">
+        <h4 class="m-0">Olivia</h4>
+        <p class="font-weight-normal text-muted mb-0">Web developer</p>
+      </div>
+    </div>
+  </div>
+
+  <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">Dashboard</p>
+
+  <ul class="nav flex-column bg-white mb-0">
+    <li class="nav-item">
+      <a [routerLink]="['/home']" routerLinkActive="router-link-active" class="nav-link text-dark bg-light">
+        <i class="fas fa-th-large mr-3 text-primary fa-fw"></i>
+        home
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="#cadastroSubmenu" class="nav-link text-dark dropdown-toggle" data-toggle="collapse">
+        <i class="fas fa-address-card mr-3 text-primary fa-fw"></i>
+        Cadastro
+      </a>
+      <ul class="collapse lisst-unstyled" id="cadastroSubmenu">
+        <li class="nav-item">
+          <a [routerLink]="['/alunosList']" routerLinkActive="router-link-active"  class="nav-link text-dark">
+            <i class="fas fa-restroom mr-3 text-primary fa-fw" ></i> Alunos
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark">
+            <i class="fas fa-calendar mr-3 text-primary fa-fw" ></i>
+               Dados
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-link text-dark">
+        <i class="fas fa-cubes mr-3 text-primary fa-fw"></i>
+        services
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-link text-dark">
+        <i class="fas fa-picture-o mr-3 text-primary fa-fw"></i>
+        Gallery
+      </a>
+    </li>
+  </ul>
+
+  <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">Charts</p>
+
+  <ul class="nav flex-column bg-white mb-0">
+    <li class="nav-item">
+      <a href="#" class="nav-link text-dark">
+        <i class="fas fa-area-chart mr-3 text-primary fa-fw"></i>
+        area charts
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-link text-dark">
+        <i class="fas fa-bar-chart mr-3 text-primary fa-fw"></i>
+        bar charts
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-link text-dark">
+        <i class="fas fa-pie-chart mr-3 text-primary fa-fw"></i>
+        pie charts
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-link text-dark">
+        <i class="fas fa-line-chart mr-3 text-primary fa-fw"></i>
+        line charts
+      </a>
+    </li>
+
+  </ul>
+
+  <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">Opções</p>
+  <ul class="nav flex-column bg-white mb-0">
+    <li class="nav-item">
+      <a href="" (click)="sair()" class="nav-link text-dark">
+        <i class="fas fa-close mr-3 text-primary fa-fw"></i>
+        Sair
+      </a>
+    </li>
+  </ul>
+</div>
+<!-- End vertical navbar -->
+
+
+<!-- Page content holder -->
+<div class="page-content p-5"  id="content" >
+  <!-- Toggle button -->
+  <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i
+      class="fas fa-bars mr-2"></i><small class="text-uppercase font-weight-bold"></small></button>
+
+  <router-outlet></router-outlet>
+
+</div>
+<!-- End demo content -->
+
+

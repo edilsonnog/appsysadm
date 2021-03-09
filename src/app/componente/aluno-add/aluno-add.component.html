@@ -1,0 +1,80 @@
+<div class="container">
+  <div class="row content">
+    <h4>Dados do Aluno</h4>
+  </div>
+  <br>
+  <div class="row content">
+    <form id="content">
+      <div class="form-row">
+        <div class="form-group col-md-1">
+          <label for="id">ID</label>
+          <input type="text" [(ngModel)]="aluno.id" class="form-control" id="id" name="id" readonly="true" autocomplete="false">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label for="nome">Nome</label>
+          <input type="text" [(ngModel)]="aluno.nome" class="form-control" id="nome" name="nome" required="true" autocomplete="false">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-3">
+          <label for="cpf">Cpf</label>
+          <input type="text" [(ngModel)]="aluno.cpf" class="form-control" id="cpf" name="cpf" required="true" autocomplete="false">
+        </div>
+        <div class="form-group col-md-3">
+          <label for="rg">Rg</label>
+          <input type="text" [(ngModel)]="aluno.rg" class="form-control" id="rg" name="rg" autocomplete="false">
+        </div>
+        <div class="form-group col-md-3">
+          <label for="dataNascimento">Data de Nascimento</label>
+          <input type="text" [(ngModel)]="aluno.dataNascimento" class="form-control" id="dataNascimento" name="dataNascimento" autocomplete="false">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-2">
+          <label for="cep">Cep</label>
+          <input type="text" [(ngModel)]="aluno.cep" class="form-control" id="cep" name="cep" autocomplete="false">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label for="logradouro">Endereço</label>
+          <input type="text" [(ngModel)]="aluno.logradouro" class="form-control" id="logradouro" name="logradouro" autocomplete="false">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="complemento">complemento</label>
+          <input type="text" [(ngModel)]="aluno.complemento" class="form-control" id="complemento" name="complemento" autocomplete="false">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="bairro">Bairro</label>
+          <input type="text" [(ngModel)]="aluno.bairro" class="form-control" id="bairro" name="bairro" autocomplete="false">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="localidade">Cidade</label>
+          <input type="text" [(ngModel)]="aluno.localidade" class="form-control" id="localidade" name="localidade" autocomplete="false">
+        </div>
+        <div class="form-group col-md-1">
+          <label for="uf">Estado</label>
+          <input type="text" [(ngModel)]="aluno.uf" class="form-control" id="uf" name="uf" autocomplete="false">
+        </div>
+      </div>
+      <br>
+      <div class="form-row">
+        <button class="btn btn-link" [routerLink]="['/alunosList']" routerLinkActive="router-link-active"><i class="fas fa-undo-alt" title="Voltar"
+            style="color: black;"></i> Voltar</button>
+        <button class="btn btn-link" (click)="novo()"><i class="fas fa-external-link-alt" title="Novo" style="color: black;"></i>
+          Novo</button>
+        <button class="btn btn-link" (click)="salvarAluno()" ><i class="far fa-save" title="Salvar" style="color: black;"></i> Salvar</button>
+      </div>
+      <br>
+    </form>
+  </div>
+</div>
+<simple-notifications></simple-notifications>

@@ -1,0 +1,31 @@
+<simple-notifications></simple-notifications>
+<div class="container">
+  <div class="row content">
+    <div class="col-md-6 mb-3">
+      <img src='/assets/varios-cursos.png' class="img-fluid" alt="image">
+    </div>
+    <div class="col-md-6">
+      <h3>Login do Sistema</h3>
+      <form>
+        <div class="form-group">
+          <label for="user">E-mail: </label>
+          <input type="email" class="form-control" #email="ngModel" [(ngModel)]="usuario.login" id="login" name="login"
+            placeholder="User" required>
+          <small *ngIf="email.invalid" class="text-danger">
+            Login de ser Informado
+          </small>
+        </div>
+        <div class="form-group">
+          <label for="senha">Senha</label>
+          <input type="password" class="form-control" #senha="ngModel" [(ngModel)]="usuario.senha" id="senha"
+            name="senha" placeholder="Senha" required>
+          <small *ngIf="senha.invalid" class="text-danger">
+            Senha de ser Informado
+          </small>
+        </div>
+        <button type="button" [disabled]="email.invalid || senha.invalid" class="btn btn-primary"
+            (click)="login()">Acessar</button>
+      </form>
+    </div>
+  </div>
+</div>

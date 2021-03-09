@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row content">
+    <h4>Lista de Alunos</h4>
+  </div>
+  <br>
+  <div class="row content">
+    <form class="form-inline">
+      <div class="form-group mx-sm-3 mb-2">
+        <input type="text" class="form-control" id="nome" name="nome" [(ngModel)]="nome"
+          placeholder="Pesquisa por Nome">
+      </div>
+      <button class="btn btn-link" (click)="consultaAluno()" style="background-color: white; padding-bottom: 10px;"><i
+          class="fab fa-searchengin" style="font-size: 2rem; color: darkblue;" title="Pesquisar"></i> Pesquisar</button>
+
+      <button class="btn btn-link" [routerLink]="['/alunoAdd']" routerLinkActive="router-link-active"
+        style="background-color: white; padding-bottom: 5px;"><i class="fas fa-plus-circle"
+          style="font-size: 2rem; color: green;" title="Novo"></i> Novo</button>
+
+    </form>
+
+    <br />
+    <br />
+    <table class="table table-sm table-striped">
+      <thead>
+        <th scope="col">ID</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Data Nascimento</th>
+        <th scope="col">Ações</th>
+      </thead>
+      <tbody class="dados">
+        <tr *ngFor="let aluno of alunos">
+          <th scope="row">{{aluno.id}}</th>
+          <td>{{aluno.nome}}</td>
+          <td>{{aluno.dataNascimento}}</td>
+          <td>
+            <button class="btn btn-link"><i class="far fa-eye" title="Ver" style="color: black;"></i></button>
+            <button class="btn btn-link" [routerLink]="['/alunoAdd', aluno.id]" routerLinkActive="router-link-active"><i
+                class="far fa-edit edit" title="Editar"></i></button>
+            <button class="btn btn-link" (click)="deleteAluno(aluno.id)"><i class="far fa-trash-alt" title="Delete"
+                style="color: red;"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<simple-notifications></simple-notifications>
