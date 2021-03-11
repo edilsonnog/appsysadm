@@ -1,7 +1,5 @@
-type NewType = Number | String;
-
 export class Alunos {
-    id: NewType;
+    id: Number | String;
     nome: String;
     cpf: String;
     rg: String;

@@ -33,4 +33,6 @@ export class AlunosService {
   updateAluno(aluno: any) : Observable<any> {
     return this.http.put<any>(AppConstants.baseAluno, aluno);
   }
+
+
 }

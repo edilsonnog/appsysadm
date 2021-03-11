@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { NotificationsService } from 'angular2-notifications';
 import { AppConstants } from '../app-constants';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Injectable({
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class LoginServiceService {
 
-  constructor(private http: HttpClient, private service: NotificationsService, private router: Router) { }
+  constructor(private http: HttpClient, private toastr: ToastrService, private router: Router) { }
 
   login(usuario: any) {
     //console.info(JSON.stringify(usuario))
@@ -35,21 +35,11 @@ export class LoginServiceService {
     );
   }
 //--proxy-config proxy.conf.js
-  onSuccess(message: any) {
-    this.service.success('Success', message, {
-      position: ['top', 'right'],
-      timeOut: 3000,
-      // animate: 'fade',
-      showProgressBar: true
-    });
-  }
+onSuccess(message: any) {
+  this.toastr.success('Success', message);
+}
 
-  onError(message: any) {
-    this.service.error('Error', message, {
-      position: ['top', 'left'],
-      timeOut: 3000,
-      //  animate: 'fade',
-      showProgressBar: true
-    });
-  }
+onError(message: any) {
+  this.toastr.error('Error', message);
+}
 }

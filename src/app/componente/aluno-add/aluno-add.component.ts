@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AlunosService } from 'src/app/service/alunos.service';
 import { Alunos } from 'src/app/model/alunos';
-import { NotificationsService } from 'angular2-notifications';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +13,7 @@ export class AlunoAddComponent implements OnInit {
 
   aluno = new Alunos();
 
-  constructor(private routeActive: ActivatedRoute, private alunoService: AlunosService, private service: NotificationsService) { }
+  constructor(private routeActive: ActivatedRoute, private alunoService: AlunosService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     let id = this.routeActive.snapshot.paramMap.get('id');
@@ -26,7 +26,7 @@ export class AlunoAddComponent implements OnInit {
   }
 
   salvarAluno() {
-    if (this.aluno.id != null && this.aluno.id.toString().trim() != null && this.aluno.id != '' ) {
+    if (this.aluno.id != null && this.aluno.id.toString().trim() != null && this.aluno.id != '') {
       this.alunoService.updateAluno(this.aluno).subscribe(data => {
         this.onSuccess('Aluno Atualizado com Sucesso..');
       });
@@ -37,25 +37,15 @@ export class AlunoAddComponent implements OnInit {
     }
   }
 
-  novo(){
+  novo() {
     this.aluno = new Alunos();
   }
 
   onSuccess(message: any) {
-    this.service.success('Success', message, {
-      position: ['top', 'right'],
-      timeOut: 3000,
-      // animate: 'fade',
-      showProgressBar: true
-    });
+    this.toastr.success('Success', message);
   }
 
   onError(message: any) {
-    this.service.error('Error', message, {
-      position: ['top', 'left'],
-      timeOut: 3000,
-      //  animate: 'fade',
-      showProgressBar: true
-    });
+    this.toastr.error('Error', message);
   }
 }

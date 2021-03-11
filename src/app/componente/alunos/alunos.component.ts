@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NotificationsService } from 'angular2-notifications';
-import { Observable } from 'rxjs';
 import { AlunosService } from 'src/app/service/alunos.service';
 import { Alunos } from 'src/app/model/alunos';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -16,7 +15,7 @@ export class AlunosComponent implements OnInit {
   alunos: Alunos[];
   nome: String;
 
-  constructor(private alunosService: AlunosService, private service: NotificationsService) {
+  constructor(private alunosService: AlunosService, private toastr: ToastrService) {
     this.alunos = [];
     this.nome = '';
   }
@@ -44,20 +43,10 @@ export class AlunosComponent implements OnInit {
   }
 
   onSuccess(message: any) {
-    this.service.success('Success', message, {
-      position: ['top', 'right'],
-      timeOut:2000,
-      animate: 'fade',
-      showProgressBar: true
-    });
+    this.toastr.success('Success', message);
   }
 
   onError(message: any) {
-    this.service.error('Error', message, {
-      position: ['top', 'left'],
-      timeOut: 2000,
-      animate: 'fade',
-      showProgressBar: true
-    });
+    this.toastr.error('Error', message);
   }
 }
