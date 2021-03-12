@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlunosService } from 'src/app/service/alunos.service';
 import { Alunos } from 'src/app/model/alunos';
 import { ToastrService } from 'ngx-toastr';
@@ -13,7 +13,7 @@ export class AlunoAddComponent implements OnInit {
 
   aluno = new Alunos();
 
-  constructor(private routeActive: ActivatedRoute, private alunoService: AlunosService, private toastr: ToastrService) { }
+  constructor(private routeActive: ActivatedRoute, private alunoService: AlunosService, private toastr: ToastrService, private router: Router) { }
 
   ngOnInit(): void {
     let id = this.routeActive.snapshot.paramMap.get('id');
@@ -29,10 +29,12 @@ export class AlunoAddComponent implements OnInit {
     if (this.aluno.id != null && this.aluno.id.toString().trim() != null && this.aluno.id != '') {
       this.alunoService.updateAluno(this.aluno).subscribe(data => {
         this.onSuccess('Aluno Atualizado com Sucesso..');
+        this.router.navigate(['alunosList']);
       });
     } else {
       this.alunoService.salvarAluno(this.aluno).subscribe(data => {
-        this.onSuccess('Aluno Salvo com Sucesso..')
+        this.onSuccess('Aluno Salvo com Sucesso..');
+        this.router.navigate(['alunosList']);
       });
     }
   }
@@ -42,10 +44,10 @@ export class AlunoAddComponent implements OnInit {
   }
 
   onSuccess(message: any) {
-    this.toastr.success('Success', message);
+    this.toastr.success(message);
   }
 
   onError(message: any) {
-    this.toastr.error('Error', message);
+    this.toastr.error(message);
   }
 }

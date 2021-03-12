@@ -46,8 +46,8 @@ export const routes: ModuleWithProviders = RouterModule.forRoot(appRouters);
     HttpClientModule,
     routes,
     ToastrModule.forRoot({
-      timeOut: 1000,
-      positionClass: 'inline',
+      timeOut: 3000,
+      positionClass: 'toast-top-right',
       progressBar: true,
       progressAnimation: 'increasing'
     }),
