@@ -1,6 +1,8 @@
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HTTP_INTERCEPTORS, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Injectable, NgModule } from '@angular/core';
-import { Observable } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
+import { Observable, throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators'
 
 @Injectable()
 export class HeaderInterceptorService implements HttpInterceptor {
@@ -13,13 +15,29 @@ export class HeaderInterceptorService implements HttpInterceptor {
         headers: req.headers.set('Authorization', token)
       });
 
-      return next.handle(tokenRequest);
+      return next.handle(tokenRequest).pipe(catchError(this.processaError));
     } else {
       return next.handle(req);
     }
 
   }
-  constructor() { }
+  constructor(private toastr: ToastrService) { }
+
+  processaError(error: HttpErrorResponse){
+    let errorMessage = 'Erro desconhecido';
+    if (error.error instanceof ErrorEvent){
+      console.error(error.error);
+      errorMessage = 'Error: ' + error.error.error;
+    } else {
+      errorMessage = 'Código: ' + error.error.code + '\nMensagem: ' + error.error.error;
+    }
+    this.onError(errorMessage);
+    return throwError(errorMessage);
+  }
+
+  onError(message: any) {
+    this.toastr.error(message);
+  }
 
 }
 
