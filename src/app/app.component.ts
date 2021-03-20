@@ -22,14 +22,14 @@ export class AppComponent implements OnInit {
     });
 
     if (localStorage.getItem('token') == null) {
-      this.router.navigate(['login']);
+      this.router.navigate(['/login']);
     }
 
   }
 
   public sair() {
     localStorage.clear();
-    this.router.navigate(['login']);
+    this.router.navigate(['/login']);
   }
 
   public esconderBarra() {
@@ -41,5 +41,13 @@ export class AppComponent implements OnInit {
     }
   }
 
+  public esconder() {
+    if (localStorage.getItem('token') !== null &&
+      localStorage.getItem('token')?.toString().trim() !== null) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
 }

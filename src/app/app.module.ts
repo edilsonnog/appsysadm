@@ -48,7 +48,7 @@ export const routes: ModuleWithProviders = RouterModule.forRoot(appRouters);
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-top-right',
-      progressBar: true,
+     // progressBar: true,
       progressAnimation: 'increasing'
     }),
     HttpInterceptorModule

@@ -1,5 +1,5 @@
 <!-- Vertical navbar -->
-<div class="vertical-nav bg-white" id="sidebar"  [hidden]="esconderBarra()">
+<div class="vertical-nav bg-white" id="sidebar" [hidden]="esconderBarra()">
   <div class="py-4 px-3 mb-4 bg-light">
     <div class="media d-flex align-items-center">
       <img loading="lazy" src="../assets/user2.png" alt="..." width="80" height="80"
@@ -27,14 +27,14 @@
       </a>
       <ul class="collapse lisst-unstyled" id="cadastroSubmenu">
         <li class="nav-item">
-          <a [routerLink]="['/alunosList']" routerLinkActive="router-link-active"  class="nav-link text-dark">
-            <i class="fas fa-restroom mr-3 text-primary fa-fw" ></i> Alunos
+          <a [routerLink]="['/alunosList']" routerLinkActive="router-link-active" class="nav-link text-dark">
+            <i class="fas fa-restroom mr-3 text-primary fa-fw"></i> Alunos
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link text-dark">
-            <i class="fas fa-calendar mr-3 text-primary fa-fw" ></i>
-               Dados
+            <i class="fas fa-calendar mr-3 text-primary fa-fw"></i>
+            Dados
           </a>
         </li>
       </ul>
@@ -97,7 +97,7 @@
 
 
 <!-- Page content holder -->
-<div class="page-content p-5"  id="content" >
+<div class="page-content p-5" id="content" [hidden]="esconderBarra()">
   <!-- Toggle button -->
   <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i
       class="fas fa-bars mr-2"></i><small class="text-uppercase font-weight-bold"></small></button>
@@ -106,5 +106,6 @@
 
 </div>
 <!-- End demo content -->
-
-
+<div [hidden]="esconder()">
+  <app-login></app-login>
+</div>

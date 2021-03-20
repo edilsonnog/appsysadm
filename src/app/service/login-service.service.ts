@@ -21,7 +21,7 @@ export class LoginServiceService {
 
       localStorage.setItem("token", token);
 
-      this.onSuccess('Login realizado com Sucesso...');
+    //  this.onSuccess('Login realizado com Sucesso...');
 
       this.router.navigate(['home']);
 
