@@ -15,17 +15,25 @@ export class HeaderInterceptorService implements HttpInterceptor {
         headers: req.headers.set('Authorization', token)
       });
 
-      return next.handle(tokenRequest).pipe(catchError(this.processaError));
+      return next.handle(tokenRequest).pipe(
+
+        tap((event: HttpEvent<any>) => {
+          if (event instanceof HttpResponse && (event.status === 200 || event.status === 201)) {
+           // this.onSuccess('Sucesso na operação.');
+          }
+        })
+
+        , catchError(this.processaError));
     } else {
-      return next.handle(req);
+      return next.handle(req).pipe(catchError(this.processaError));
     }
 
   }
   constructor(private toastr: ToastrService) { }
 
-  processaError(error: HttpErrorResponse){
+  processaError(error: HttpErrorResponse) {
     let errorMessage = 'Erro desconhecido';
-    if (error.error instanceof ErrorEvent){
+    if (error.error instanceof ErrorEvent) {
       console.error(error.error);
       errorMessage = 'Error: ' + error.error.error;
     } else {
@@ -39,6 +47,10 @@ export class HeaderInterceptorService implements HttpInterceptor {
     this.toastr.error(message);
   }
 
+  onSuccess(message: any) {
+    this.toastr.success(message);
+  }
+
 }
 
 @NgModule({
@@ -50,7 +62,7 @@ export class HeaderInterceptorService implements HttpInterceptor {
   ],
 })
 
-export class HttpInterceptorModule{
+export class HttpInterceptorModule {
 
 }
 

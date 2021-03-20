@@ -26,7 +26,7 @@ export class AlunosComponent implements OnInit {
     });
   }
 
-  deleteAluno(id: Number) {
+  deleteAluno(id: String | Number) {
     this.alunosService.deletarAluno(id).subscribe(data => {
       console.log("Retorno do metodo Delete: " + data)
       this.onSuccess('Aluno removido com Sucesso...');

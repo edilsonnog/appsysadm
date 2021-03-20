@@ -18,7 +18,7 @@ export class AlunosService {
     return this.http.get<any>(AppConstants.baseAluno + id);
   }
 
-  deletarAluno(id: Number | String): Observable<any> {
+  deletarAluno(id: String | Number): Observable<any> {
     return this.http.delete(AppConstants.baseAluno + id, { responseType: 'text' });
   }
 
