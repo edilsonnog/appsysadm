@@ -14,6 +14,7 @@ export class AlunosComponent implements OnInit {
 
   alunos: Alunos[];
   nome: String;
+  p: number = 1;
 
   constructor(private alunosService: AlunosService, private toastr: ToastrService) {
     this.alunos = [];
@@ -27,13 +28,15 @@ export class AlunosComponent implements OnInit {
   }
 
   deleteAluno(id: String | Number) {
-    this.alunosService.deletarAluno(id).subscribe(data => {
-      console.log("Retorno do metodo Delete: " + data)
-      this.onSuccess('Aluno removido com Sucesso...');
-      this.alunosService.getAlunosList().subscribe(data => {
-        this.alunos = data;
+    if (confirm('Deseja mesmo remover?')) {
+      this.alunosService.deletarAluno(id).subscribe(data => {
+        console.log("Retorno do metodo Delete: " + data)
+        this.onSuccess('Aluno removido com Sucesso...');
+        this.alunosService.getAlunosList().subscribe(data => {
+          this.alunos = data;
+        });
       });
-    });
+    }
   }
 
   consultaAluno() {

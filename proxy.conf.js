@@ -5,6 +5,14 @@ const PROXY_CONFIG = [
     secure: false,
     logLevel: 'debug',
     pathRewrite: { '^/api': '' }
+  },
+  {
+    context: '/cep',
+    target: 'https://viacep.com.br/ws',
+    secure: false,
+    changeOrigin:true,
+    logLevel: 'debug',
+    pathRewrite: { '^/cep': '' }
   }
 ];
 

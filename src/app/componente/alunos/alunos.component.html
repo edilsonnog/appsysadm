@@ -28,7 +28,7 @@
         <th scope="col">Ações</th>
       </thead>
       <tbody class="dados">
-        <tr *ngFor="let aluno of alunos">
+        <tr *ngFor="let aluno of alunos | paginate: {itemsPerPage:5, currentPage: p }">
           <th scope="row">{{aluno.id}}</th>
           <td>{{aluno.nome}}</td>
           <td>{{aluno.dataNascimento}}</td>
@@ -42,6 +42,10 @@
         </tr>
       </tbody>
     </table>
+
+    <div class="text-center">
+      <pagination-controls (pageChange)="p = $event" previousLabel="Voltar" nextLabel="Avançar" resposive="true">
+      </pagination-controls>
+    </div>
   </div>
 </div>
-

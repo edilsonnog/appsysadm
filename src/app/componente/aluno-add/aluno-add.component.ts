@@ -1,8 +1,11 @@
+import { ConsultaCepService } from './../../service/consulta-cep.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlunosService } from 'src/app/service/alunos.service';
 import { Alunos } from 'src/app/model/alunos';
 import { ToastrService } from 'ngx-toastr';
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-root',
@@ -13,7 +16,12 @@ export class AlunoAddComponent implements OnInit {
 
   aluno = new Alunos();
 
-  constructor(private routeActive: ActivatedRoute, private alunoService: AlunosService, private toastr: ToastrService, private router: Router) { }
+  constructor(private routeActive: ActivatedRoute,
+              private alunoService: AlunosService,
+              private toastr: ToastrService,
+              private router: Router,
+              private http: HttpClient,
+              private consultaceps: ConsultaCepService) { }
 
   ngOnInit(): void {
     let id = this.routeActive.snapshot.paramMap.get('id');
@@ -43,6 +51,19 @@ export class AlunoAddComponent implements OnInit {
     this.aluno = new Alunos();
   }
 
+  buscaCep(valor: any){
+    this.consultaceps.buscaCEP(valor).subscribe((data) => this.populaform(data));
+  }
+
+  populaform(data: any){
+    this.aluno.cep =  data.cep,
+    this.aluno.logradouro = data.logradouro,
+    this.aluno.bairro = data.bairro,
+    this.aluno.complemento = data.complemento,
+    this.aluno.localidade = data.localidade,
+    this.aluno.uf = data.uf
+  }
+
   onSuccess(message: any) {
     this.toastr.success(message);
   }
@@ -50,4 +71,5 @@ export class AlunoAddComponent implements OnInit {
   onError(message: any) {
     this.toastr.error(message);
   }
+
 }

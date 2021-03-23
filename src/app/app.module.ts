@@ -14,6 +14,8 @@ import { GuardiaoGuard } from "./service/guardiao.guard";
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpInterceptorModule } from './service/header-interceptor.service';
+import { NgxMaskModule, IConfig} from 'ngx-mask';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -29,6 +31,8 @@ export const appRouters: Routes = [
 ];
 
 export const routes: ModuleWithProviders = RouterModule.forRoot(appRouters);
+
+export const optionsMask : Partial<IConfig> | (() => Partial<IConfig>) = {};
 
 @NgModule({
   declarations: [
@@ -51,7 +55,9 @@ export const routes: ModuleWithProviders = RouterModule.forRoot(appRouters);
      // progressBar: true,
       progressAnimation: 'increasing'
     }),
-    HttpInterceptorModule
+    HttpInterceptorModule,
+    NgxMaskModule.forRoot(optionsMask),
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
