@@ -28,7 +28,7 @@
         <th scope="col">Ações</th>
       </thead>
       <tbody class="dados">
-        <tr *ngFor="let aluno of alunos | paginate: {itemsPerPage:5, currentPage: p }">
+        <tr *ngFor="let aluno of alunos | paginate: {itemsPerPage:5, currentPage: p, totalItems: total }">
           <th scope="row">{{aluno.id}}</th>
           <td>{{aluno.nome}}</td>
           <td>{{aluno.dataNascimento}}</td>
@@ -43,8 +43,8 @@
       </tbody>
     </table>
 
-    <div class="text-center">
-      <pagination-controls (pageChange)="p = $event" previousLabel="Voltar" nextLabel="Avançar" resposive="true">
+    <div class="form-group col-md-12 text-center">
+      <pagination-controls (pageChange)="carregarPagina(p = $event);" previousLabel="Voltar" nextLabel="Avançar" resposive="true">
       </pagination-controls>
     </div>
   </div>

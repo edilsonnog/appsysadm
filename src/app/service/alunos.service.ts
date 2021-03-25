@@ -14,6 +14,10 @@ export class AlunosService {
     return this.http.get<any>(AppConstants.baseAluno);
   }
 
+  getAlunosListPage(pagina: any): Observable<any> {
+    return this.http.get<any>(AppConstants.baseAluno + 'page/' + pagina);
+  }
+
   getAluno(id: Number | String): Observable<any> {
     return this.http.get<any>(AppConstants.baseAluno + id);
   }
@@ -24,6 +28,10 @@ export class AlunosService {
 
   consultaAluno(nome: String): Observable<any> {
     return this.http.get(AppConstants.baseAluno + "alunoPorNome/" + nome);
+  }
+
+  consultaAlunoPorPage(nome: String, page: Number): Observable<any> {
+    return this.http.get(AppConstants.baseAluno + "alunoPorNome/" + nome + "/page/" + page);
   }
 
   salvarAluno(aluno: any) : Observable<any> {

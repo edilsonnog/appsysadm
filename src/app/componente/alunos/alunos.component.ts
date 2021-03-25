@@ -12,18 +12,17 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AlunosComponent implements OnInit {
 
-  alunos: Alunos[];
-  nome: String;
+  alunos: Alunos[] = [];
+  nome: string = '';
   p: number = 1;
+  total: number = 0;
 
-  constructor(private alunosService: AlunosService, private toastr: ToastrService) {
-    this.alunos = [];
-    this.nome = '';
-  }
+  constructor(private alunosService: AlunosService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.alunosService.getAlunosList().subscribe(data => {
-      this.alunos = data;
+      this.alunos = data.content;
+      this.total = data.totalElements;
     });
   }
 
@@ -40,9 +39,34 @@ export class AlunosComponent implements OnInit {
   }
 
   consultaAluno() {
-    this.alunosService.consultaAluno(this.nome).subscribe(data => {
-      this.alunos = data;
-    });
+    if (this.nome === '') {
+      this.alunosService.getAlunosList().subscribe(data => {
+        this.alunos = data.content;
+        this.total = data.totalElements;
+      });
+    } else {
+      this.alunosService.consultaAluno(this.nome).subscribe(data => {
+        this.alunos = data.content;
+        this.total = data.totalElements;
+      });
+    }
+  }
+
+
+  carregarPagina(pagina: any) {
+
+    if (this.nome !== '') {
+      this.alunosService.consultaAlunoPorPage(this.nome, pagina -1).subscribe(data => {
+        this.alunos = data.content;
+        this.total = data.totalElements;
+      });
+    }
+    else {
+      this.alunosService.getAlunosListPage(pagina - 1).subscribe(data => {
+        this.alunos = data.content;
+        this.total = data.totalElements;
+      });
+    }
   }
 
   onSuccess(message: any) {
